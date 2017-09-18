@@ -1,0 +1,40 @@
+// color
+@color-text: #444;
+@color-link: #0E4E9E;
+
+// size
+@text-size: 1rem;
+@phone-size: 1.1rem;
+
+.content {
+  .logo {
+    display: block;
+    width: 50%;
+    margin: 30px auto;
+  }
+  .about {
+    text-indent: 1.5rem;
+    margin: 0 auto;
+    width: 80%;
+    line-height: 150%;
+    font-size: @text-size;
+    color: @color-text;
+  }
+  .contact-us {
+    line-height: 200%;
+    margin: 3rem auto 40px;
+    width: 70%;
+    a {
+      color: @color-link;
+      text-decoration: underline;
+      &:active {
+        color: green;
+      }
+    }
+    h5 {
+      font-size: @phone-size;
+      color: @color-text;
+    }
+  }
+
+}

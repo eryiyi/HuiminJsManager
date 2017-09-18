@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.FriendsDao">
+    <resultMap id="friends" type="com.liangxunwang.unimanager.model.Friends">
+        <id column="friendsid" property="friendsid"/>
+        <result column="empid1" property="empid1"/>
+        <result column="empid2" property="empid2"/>
+        <result column="applytitle" property="applytitle"/>
+        <result column="applytime" property="applytime"/>
+        <result column="accepttime" property="accepttime"/>
+        <result column="is_check" property="is_check"/>
+
+        <result column="empid1Cover" property="empid1Cover"/>
+        <result column="empid1Nickname" property="empid1Nickname"/>
+        <result column="empid2Cover" property="empid2Cover"/>
+        <result column="empid2Nickname" property="empid2Nickname"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.Friends">
+        INSERT INTO friends(friendsid, empid1, empid2, applytitle, applytime, accepttime, is_check)
+        VALUES (#{friendsid}, #{empid1}, #{empid2}, #{applytitle,jdbcType=VARCHAR}, #{applytime,jdbcType=VARCHAR}, #{applytime,jdbcType=VARCHAR}, #{is_check})
+    </insert>
+
+    <select id="findById" parameterType="String" resultMap="friends">
+        SELECT sn.*,
+        lemp1.cover as empid1Cover,
+        lemp1.nickname as empid1Nickname,
+        lemp2.cover as empid2Cover,
+        lemp2.nickname as empid2Nickname
+         FROM friends sn
+         LEFT JOIN emp lemp1 ON lemp1.empid = sn.empid1
+         LEFT JOIN emp lemp2 ON lemp2.empid = sn.empid2
+         where sn.friendsid=#{friendsid}
+    </select>
+
+    <update id="update" parameterType="String">
+        UPDATE friends SET accepttime=#{accepttime},is_check=#{is_check} WHERE friendsid=#{friendsid}
+    </update>
+
+    <select id="lists" resultMap="friends">
+        SELECT sn.*,
+        lemp1.cover as empid1Cover,
+        lemp1.nickname as empid1Nickname,
+        lemp2.cover as empid2Cover,
+        lemp2.nickname as empid2Nickname
+        FROM friends sn
+        LEFT JOIN emp lemp1 ON lemp1.empid = sn.empid1
+        LEFT JOIN emp lemp2 ON lemp2.empid = sn.empid2
+        where 1 = 1
+        <if test="empid1 != null and empid1 != ''">
+            AND sn.empid1 = #{empid1}
+        </if>
+        <if test="empid2 != null and empid2 != ''">
+            AND sn.empid2 = #{empid2}
+        </if>
+        <if test="is_check != null and is_check != ''">
+            AND sn.is_check = #{is_check}
+        </if>
+
+        <if test="starttime != null and starttime != ''">
+            AND sn.applytime  &gt;= #{starttime}
+        </if>
+        <if test="endtime != null and endtime != ''">
+            AND sn.applytime  &lt;= #{endtime}
+        </if>
+
+        <if test="keywords != null and keywords != ''">
+            AND (lemp2.nickname like CONCAT('%',#{keywords},'%')  OR  lemp2.mobile like CONCAT('%',#{keywords},'%') )
+        </if>
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.friendsid) FROM friends sn
+        WHERE 1=1
+        <if test="empid1 != null and empid1 != ''">
+            AND sn.empid1 = #{empid1}
+        </if>
+        <if test="empid2 != null and empid2 != ''">
+            AND sn.empid2 = #{empid2}
+        </if>
+        <if test="starttime != null and starttime != ''">
+            AND sn.applytime  &gt;= #{starttime}
+        </if>
+        <if test="endtime != null and endtime != ''">
+            AND sn.applytime  &lt;= #{endtime}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            AND (lemp2.nickname like CONCAT('%',#{keywords},'%')  OR  lemp2.mobile like CONCAT('%',#{keywords},'%') )
+        </if>
+    </select>
+
+
+    <delete id="delete" parameterType="com.liangxunwang.unimanager.model.Friends">
+        DELETE FROM friends where empid1 = #{empid1} AND empid2 = #{empid2}
+    </delete>
+
+    <delete id="deleteById" parameterType="com.liangxunwang.unimanager.model.Friends">
+        DELETE FROM friends where friendsid=#{friendsid}
+    </delete>
+
+
+    <delete id="deleteByEmpId" parameterType="com.liangxunwang.unimanager.model.Friends">
+        DELETE FROM friends where empid1 = #{empid1} AND empid2 = #{empid2} AND is_check = #{is_check}
+    </delete>
+
+</mapper>

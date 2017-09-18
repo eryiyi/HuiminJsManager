@@ -1,0 +1,141 @@
+.cat-content {
+    margin: 2rem auto;
+    width: 90%;
+}
+
+.cat-title {
+    font-size: .9rem;
+    margin: 1rem auto;
+}
+
+.cat-item {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    margin: 1rem 6% 1rem 0;
+    width: 100%;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 3px;
+}
+
+.cat-item > span {
+    line-height: 3rem;
+    height: 3rem;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cat-item > i {
+    min-width: 3rem;
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    display: block;
+    float: right;
+    border-radius: 2rem;
+    border: 2px solid #ffffff;
+    padding: .5rem .5rem;
+    font-size: 1.5rem;
+    height: 3rem;
+}
+
+.cat-item .btn-export {
+    color: transparent;
+    margin: 0 1rem 0 1rem;
+    background-color: transparent;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    display: block;
+    float: right;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    padding: .5rem .5rem;
+    font-size: 1.5rem;
+    height: 3rem;
+}
+
+.cat-item .btn-export:active {
+    background-color: #fff;
+}
+
+.cat-item:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.cat-item:hover .btn-export {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.bg-blue {
+    background-color: #3cc6f4;
+    transition: box-shadow 0.3s;
+}
+
+.bg-blue:hover {
+    background-color: #24bff3;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bg-blue:active {
+    background-color: #6cd4f7;
+}
+
+.bg-purple {
+    background-color: #a698ef;
+    transition: box-shadow 0.3s;
+}
+
+.bg-purple:hover {
+    background-color: #9382ec;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bg-purple:active {
+    background-color: #ccc4f6;
+}
+
+.bg-red {
+    background-color: #fe7a88;
+    transition: box-shadow 0.3s;
+}
+
+.bg-red:hover {
+    background-color: #fe6171;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bg-red:active {
+    background-color: #feadb5;
+}
+
+.bg-green {
+    background-color: #5cc88e;
+    transition: box-shadow 0.3s;
+}
+
+.bg-green:hover {
+    background-color: #49c281;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bg-green:active {
+    background-color: #82d5a8;
+}
+
+.bg-orange {
+    background-color: #ffb48a;
+    transition: box-shadow 0.3s;
+}
+
+.bg-orange:hover {
+    background-color: #ffa470;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bg-orange:active {
+    background-color: #ffd5bd;
+}

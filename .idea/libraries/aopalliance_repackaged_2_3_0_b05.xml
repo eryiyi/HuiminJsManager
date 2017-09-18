@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="aopalliance-repackaged-2.3.0-b05">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-httpclient-3.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

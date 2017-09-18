@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.RoleDao">
+    <resultMap id="my_role" type="com.liangxunwang.unimanager.model.Role">
+        <id column="rid" property="rid"/>
+        <result column="rname" property="rname"/>
+        <result column="permissions" property="permissions"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.Role">
+        INSERT INTO happy_hand_role(rid, rname, permissions) VALUES (#{rid}, #{rname}, #{permissions})
+    </insert>
+
+    <select id="list" resultMap="my_role">
+        SELECT * from happy_hand_role
+    </select>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM happy_hand_role WHERE rid=#{rid}
+    </delete>
+
+    <select id="find" parameterType="String" resultMap="my_role">
+        SELECT * FROM happy_hand_role WHERE rid=#{rid}
+    </select>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.Role">
+        UPDATE happy_hand_role SET rname=#{rname},permissions=#{permissions} WHERE rid=#{rid}
+    </update>
+</mapper>

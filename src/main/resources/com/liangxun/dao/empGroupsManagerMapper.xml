@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.EmpGroupsManagerDao">
+    <resultMap id="empGroupManager" type="com.liangxunwang.unimanager.model.EmpGroupManager">
+        <id column="emp_group_manager_id" property="emp_group_manager_id"/>
+        <result column="empid" property="empid"/>
+        <result column="groupid" property="groupid"/>
+        <result column="dateline" property="dateline"/>
+
+        <result column="nickname" property="nickname"/>
+        <result column="cover" property="cover"/>
+        <result column="title" property="title"/>
+    </resultMap>
+
+    <select id="lists" resultMap="empGroupManager">
+        SELECT sn.*
+        ,lemp.nickname as nickname
+        ,lemp.cover as cover
+        ,lg.title as title
+        from emp_group_manager sn
+        LEFT  JOIN  emp lemp ON lemp.empid = sn.empid
+        LEFT  JOIN  happy_hand_group lg ON lg.groupid = sn.groupid
+        WHERE 1=1
+        <if test="empid != null and empid != ''">
+            AND sn.empid = #{empid}
+        </if>
+        <if test="groupid != null and groupid != ''">
+            AND sn.groupid = #{groupid}
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.EmpGroupManager">
+        INSERT INTO emp_group_manager(emp_group_manager_id, empid,groupid,dateline)
+        VALUES (#{emp_group_manager_id}, #{empid}, #{groupid}, #{dateline})
+    </insert>
+
+    <delete id="delete" parameterType="com.liangxunwang.unimanager.model.EmpGroupManager">
+        DELETE FROM emp_group_manager where emp_group_manager_id = #{emp_group_manager_id} OR groupid = #{groupid}
+    </delete>
+
+    <delete id="deleteByGroupid" parameterType="String">
+        DELETE FROM emp_group_manager where groupid = #{groupid}
+    </delete>
+
+    <select id="findById" resultMap="empGroupManager" parameterType="String">
+        SELECT sn.*
+        from emp_group_manager sn
+        WHERE sn.groupid=#{groupid}
+    </select>
+
+</mapper>

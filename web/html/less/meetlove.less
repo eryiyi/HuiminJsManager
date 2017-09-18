@@ -1,0 +1,308 @@
+//variables
+@orange:      #ffa500;
+@darkorange:  #ff8c00;
+@bg-gray:   #f1f1f1;
+
+@footer-text-color: #4d4d4d;
+
+@phone-screen: 640px;
+
+@phone-header-height:50px;
+
+
+//reset
+*{
+  font-family:"PingFang SC","Microsoft Yahei UI","Microsoft Yahei";
+}
+a{
+  color: orange;
+  &:hover{
+    color: darkorange;
+  }
+}
+
+body{
+}
+@media screen and(min-width: @phone-screen){
+
+  .container{
+    max-width: 1300px;
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+
+  }
+  .header{
+    width: 100%;
+    height: 75px;
+    background-color: @bg-gray;
+    border-bottom: 1px solid darken(@bg-gray,15%);
+    .logo{
+      display: block;
+      height: 75px;
+      float: left;
+    }
+    .phone{
+      position: relative;
+      float: right;
+      margin-top: 17.5px;
+      display: block;
+      height: 40px;
+      img{
+        position: absolute;
+        left: 0;
+        top: 2px;
+        display: block;
+        height: 35px;
+        width: 35px;
+        vertical-align: middle;
+      }
+      span{
+        float: left;
+        padding-left: 40px;
+        font-size: 20px;
+        line-height: 40px;
+        height: 40px;
+      }
+    }
+  }
+  .content{
+    position: relative;
+    height: 800px;
+    background: #fff url("../pics/bg.jpg") center bottom no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+
+  }
+  .footer{
+    text-align: center;
+    background-color: @bg-gray;
+    padding-top: 30px;
+    .footer-title{
+      font-size: 23px;
+      font-weight: normal;
+      color: #000;
+    }
+    .footer-detail{
+      font-size: 14px;
+      color: @footer-text-color;
+      margin-bottom: 0;
+      padding-bottom: 20px;
+    }
+  }
+
+  //cards
+
+  .cards{
+    margin-top: 80px;
+    float: right;
+    width: 40%;
+  }
+  .right-words{
+    margin-bottom: 40px;
+    img{
+      display: block;
+      width: 100%;
+    }
+  }
+  .download-card{
+    margin: 0 auto;
+    width: 180px;
+    img{
+      width: 100%;
+      display: block;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    .btn-download{
+      margin-top: 10px;
+      border: 2px solid @darkorange;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+      height: 50px;
+      display: block;
+      width: 100%;
+      -webkit-background-size:contain;
+      background-size:contain;
+      &:active{
+        border-color: @orange;
+      }
+    }
+    .btn-apple{
+      background: transparent url("../pics/btn_iphone.png") center no-repeat;
+      margin-top: 30px;
+    }
+    .btn-android{
+      background: transparent url("../pics/btn_android.png") center no-repeat;
+    }
+  }
+
+  .left-words{
+    float: left;
+    margin-top: 60px;
+    width: 40%;
+    img{
+      width: 100%;
+    }
+  }
+  .bottom-words{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    img{
+      max-width:100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+//+++++++++在手机屏幕上时++++++++
+@media screen and (max-width: @phone-screen){
+  .container{
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+    height: 100%;
+    position: relative;
+  }
+  .header{
+    height: @phone-header-height;
+    background-color: @bg-gray;
+    border-bottom: 1px solid darken(@bg-gray,15%);
+    .logo{
+      display: block;
+      height: @phone-header-height;
+      float: left;
+      img{
+        height:@phone-header-height;
+      }
+    }
+    .phone{
+      position: relative;
+      float: right;
+      margin-top: 10px;
+      display: block;
+      height: 30px;
+      img{
+        position: absolute;
+        left: 0;
+
+        display: block;
+        height: 30px;
+        width: 30px;
+        vertical-align: middle;
+      }
+      span{
+        float: left;
+        padding-left: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .content{
+    position: relative;
+    height: auto;
+    background: #fff url("../pics/bg_center.jpg") center bottom no-repeat;
+    -webkit-background-size:cover;
+    background-size:cover;
+
+  }
+  .footer{
+    text-align: center;
+    background-color: @bg-gray;
+    padding-top: 30px;
+    .footer-title{
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: #000;
+    }
+    .footer-detail{
+      font-size: 1rem;
+      color: @footer-text-color;
+      margin-bottom: 0;
+      padding-bottom: 20px;
+    }
+  }
+
+  //cards
+
+  .cards{
+  }
+  .download-card{
+    width: 45%;
+    margin: 0 auto;
+    img{
+      width: 100%;
+      display: block;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px solid @orange;
+    }
+    .btn-apple{
+      background: transparent url("../pics/btn_iphone.png") center no-repeat;
+    }
+    .btn-android{
+      background: transparent url("../pics/btn_android.png") center no-repeat;
+    }
+    .btn-download{
+      margin-top: 15px;
+      border: 1px solid @darkorange;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      height: 40px;
+      display: block;
+      width: 100%;
+      -webkit-background-size:contain;
+      background-size:contain;
+      &:active{
+        border-color: @orange;
+      }
+    }
+
+  }
+
+
+  //words
+
+  .right-words{
+    width: 90%;
+    margin: 30px auto;
+    img{
+      width: 100%;
+    }
+  }
+  .left-words{
+    width: 90%;
+    margin: 30px auto;
+    img{
+      width: 100%;
+    }
+  }
+  .bottom-words {
+    width: 100%;
+    bottom: 10px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

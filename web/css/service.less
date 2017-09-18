@@ -1,0 +1,83 @@
+@color-words: #999;
+
+@icon-name-size: .8rem;
+@user-name-size: 1.2rem;
+@user-type-size: 1rem;
+@color-icon-tap: #ccc;
+
+body {
+  background-color: #F2F2F2;
+}
+
+.glide {
+  background-color: #fff;
+  .panel {
+    z-index: 99;
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 25px;
+    .head-pic {
+      float: left;
+      height: 50px;
+      width: 50px;
+      border-radius: 50px;
+      border: 1px solid #fff;
+    }
+    .user-info {
+      margin-top: 5px;
+      margin-left: 1rem;
+      float: left;
+      .name {
+        text-shadow: 0 0 2px #000;
+        font-size: @user-name-size;
+        color: #fff;
+      }
+      .type {
+        text-shadow: 0 0 2px #000;
+        color: #fff;
+        font-size: @user-type-size;
+      }
+    }
+  }
+}
+
+.content {
+  .title {
+    margin-top: 1rem;
+    margin-left: 15px;
+    line-height: 200%;
+    font-size: .8rem;
+    color: @color-words;
+  }
+  .icons {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background-color: #fff;
+    .icon {
+      float: left;
+      box-sizing: border-box;
+      border-right: 1px solid #f2f2f2;
+      border-bottom: 1px solid #f2f2f2;
+      width: 25%;
+      float: left;
+      .icon-pic {
+        padding: 5px;
+        & > img {
+          display: block;
+          width: 90%;
+          max-width: 100px;
+          margin: 0 auto;
+        }
+      }
+      .icon-name {
+        line-height: 200%;
+        margin-bottom: 3px;
+        font-size: @icon-name-size;
+        color: @color-words;
+        text-align: center;
+      }
+      &:active {
+        background-color: @color-icon-tap;
+      }
+    }
+  }
+}

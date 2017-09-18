@@ -1,0 +1,13 @@
+.report-reason {
+    display: block;
+    margin: 0 auto 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    line-height: 150%;
+}
+
+.title {
+    line-height: 300%;
+    font-size: 1.1rem;
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.RecordCommentDao">
+    <resultMap id="recordComment" type="com.liangxunwang.unimanager.model.RecordComment">
+        <id column="comment_id" property="comment_id"/>
+        <result column="record_id" property="record_id"/>
+        <result column="comment_cont" property="comment_cont"/>
+        <result column="comment_dateline" property="comment_dateline"/>
+        <result column="comment_empid" property="comment_empid"/>
+    </resultMap>
+
+    <resultMap id="recordComment_vo" type="com.liangxunwang.unimanager.mvc.vo.RecordCommentVO">
+        <id column="comment_id" property="comment_id"/>
+        <result column="record_id" property="record_id"/>
+        <result column="comment_cont" property="comment_cont"/>
+        <result column="comment_dateline" property="comment_dateline"/>
+        <result column="comment_empid" property="comment_empid"/>
+
+        <result column="commentNickname" property="commentNickname"/>
+        <result column="commentCover" property="commentCover"/>
+    </resultMap>
+
+
+    <select id="lists" resultMap="recordComment_vo">
+         SELECT sn.*,lemp.nickname as commentNickname, lemp.cover as commentCover
+          from record_comment sn
+          LEFT JOIN emp lemp ON sn.comment_empid=lemp.empid
+        WHERE 1=1
+        <if test="record_id != null and record_id != ''">
+            AND sn.record_id = #{record_id}
+        </if>
+        <if test="comment_empid != null and comment_empid != ''">
+            AND sn.comment_empid = #{comment_empid}
+        </if>
+        ORDER  by sn.comment_dateline DESC
+          limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.comment_id) FROM record_comment sn
+        WHERE 1=1
+        <if test="record_id != null and record_id != ''">
+            AND sn.record_id = #{record_id}
+        </if>
+        <if test="comment_empid != null and comment_empid != ''">
+            AND sn.comment_empid = #{comment_empid}
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.RecordComment">
+        INSERT INTO record_comment(comment_id, record_id, comment_cont, comment_dateline,comment_empid)
+        VALUES (#{comment_id}, #{record_id}, #{comment_cont}, #{comment_dateline}, #{comment_empid})
+    </insert>
+
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.RecordDao">
+    <resultMap id="record" type="com.liangxunwang.unimanager.model.Record">
+        <id column="record_id" property="record_id"/>
+        <result column="empid" property="empid"/>
+        <result column="record_type" property="record_type"/>
+        <result column="record_cont" property="record_cont"/>
+        <result column="record_pic" property="record_pic"/>
+        <result column="record_video" property="record_video"/>
+        <result column="record_use" property="record_use"/>
+        <result column="record_dateline" property="record_dateline"/>
+    </resultMap>
+
+    <resultMap id="record_vo" type="com.liangxunwang.unimanager.mvc.vo.RecordVO">
+        <id column="record_id" property="record_id"/>
+        <result column="empid" property="empid"/>
+        <result column="record_type" property="record_type"/>
+        <result column="record_cont" property="record_cont"/>
+        <result column="record_pic" property="record_pic"/>
+        <result column="record_video" property="record_video"/>
+        <result column="record_use" property="record_use"/>
+        <result column="record_dateline" property="record_dateline"/>
+
+        <result column="mobile" property="mobile"/>
+        <result column="nickname" property="nickname"/>
+        <result column="cover" property="cover"/>
+
+        <result column="commentNum" property="commentNum"/>
+        <result column="favourNum" property="favourNum"/>
+    </resultMap>
+
+
+    <select id="lists" resultMap="record_vo">
+         SELECT sn.*,lemp.nickname as nickname,lemp.mobile as mobile,lemp.cover as cover,
+        (select count(lcomment.comment_id) from record_comment lcomment where lcomment.record_id = sn.record_id) as commentNum,
+        (select count(lfavour.favour_id) from record_favour lfavour where lfavour.record_id = sn.record_id) as favourNum
+          from happy_record sn
+          LEFT JOIN emp lemp ON sn.empid=lemp.empid
+        WHERE 1=1
+        <if test="record_use != null and record_use != ''">
+            AND sn.record_use = #{record_use}
+        </if>
+        <if test="empid != null and empid != ''">
+            AND sn.empid = #{empid}
+        </if>
+        <if test="record_type != null and record_type != ''">
+            AND sn.record_type = #{record_type}
+        </if>
+        ORDER  by sn.record_dateline DESC
+          limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.record_id) FROM happy_record sn
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.Record">
+        INSERT INTO happy_record(record_id, empid, record_type, record_cont,record_pic,record_video,record_dateline)
+        VALUES (#{record_id}, #{empid}, #{record_type}, #{record_cont,jdbcType=VARCHAR}, #{record_pic,jdbcType=VARCHAR}, #{record_video,jdbcType=VARCHAR}, #{record_dateline,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="delete" parameterType="String">
+        update happy_record SET record_use='1' where record_id = #{record_id}
+    </update>
+
+    <select id="findById" parameterType="String" resultMap="record_vo">
+        SELECT sn.*,lemp.nickname as nickname,lemp.mobile as mobile,lemp.cover as cover
+        from happy_record sn
+        LEFT JOIN emp lemp ON sn.empid=lemp.empid
+        WHERE 1=1
+            AND sn.record_id = #{record_id}
+    </select>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.Record">
+        UPDATE happy_record SET record_use=#{record_use}  WHERE record_id=#{record_id}
+    </update>
+
+</mapper>

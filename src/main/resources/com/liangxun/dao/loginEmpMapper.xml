@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.LoginEmpDao">
+    <resultMap id="loginEmp" type="com.liangxunwang.unimanager.model.LoginEmp">
+        <id column="login_id" property="login_id"/>
+        <result column="empid" property="empid"/>
+        <result column="dateline" property="dateline"/>
+        <result column="is_login" property="is_login"/>
+        <result column="logindate" property="logindate"/>
+    </resultMap>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.login_id) FROM emp_login sn
+        WHERE 1=1
+        <if test="empid != null and empid != ''">
+            AND sn.empid = #{empid}
+        </if>
+        <if test="is_login != null and is_login != ''">
+            AND sn.is_login = #{is_login}
+        </if>
+        <if test="logindate != null and logindate != ''">
+            AND sn.logindate = #{logindate}
+        </if>
+        <if test="startTime != null and startTime != ''">
+            AND sn.dateline &gt; #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND sn.dateline &lt; #{endTime}
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.LoginEmp">
+        INSERT INTO emp_login(login_id, empid, dateline, is_login, logindate)
+        VALUES (#{login_id}, #{empid}, #{dateline}, #{is_login}, #{logindate})
+    </insert>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.LoginEmp">
+        UPDATE emp_login SET is_login=#{is_login}  WHERE empid=#{empid} AND logindate=#{logindate}
+    </update>
+
+    <update id="updateLogout" parameterType="com.liangxunwang.unimanager.model.LoginEmp">
+        UPDATE emp_login SET is_login=#{is_login}   WHERE logindate=#{logindate}
+    </update>
+
+
+</mapper>

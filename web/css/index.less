@@ -1,0 +1,168 @@
+// COLOR
+@bg-color: #ECECEC;
+@warning-color: #555;
+// SIZE
+@warning-size: 1.2rem;
+
+body {
+  background-color: @bg-color;
+}
+
+a:link, a:visited {
+  color: #333;
+}
+
+.content {
+  width: 95%;
+}
+
+.item {
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background-color: #fff;
+
+  .item-content {
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    line-height: 140%;
+    border-bottom: 1px solid #ECECEC;
+
+  }
+  .item-footer {
+    padding: 5px;
+
+    .read-status-unread {
+      float: left;
+      width: 60px;
+      height: 70px;
+      margin-left: 10px;
+      background: url("../pics/tree_icons_read_0.png") no-repeat center center;
+      background-size: 60px;
+    }
+    .read-status-readed {
+      float: left;
+      width: 60px;
+      height: 70px;
+      margin-left: 10px;
+      background: url("../pics/tree_icons_read_1.png") no-repeat center center;
+      background-size: 60px;
+    }
+    .item-button(@name) {
+      float: right;
+      height: 70px;
+      width: 50px;
+      margin: 0 5px;
+      background: url("../pics/tree_button_@{name}.png") no-repeat center center;
+      background-size: 50px;
+      &:active {
+        background: url("../pics/tree_button_@{name}_p.png") no-repeat center center;
+        background-size: 50px;
+      }
+    }
+    .button-pic {
+      .item-button(pic);
+    }
+    .button-phone {
+      .item-button(call);
+    }
+    .button-share {
+      .item-button(share);
+    }
+    .button-report {
+      .item-button(report);
+    }
+  }
+  .button-phone-big {
+    display: block;
+    width: 60%;
+    max-width: 200px;
+    margin: 20px auto;
+    .phone-number {
+      font-size: 1.3rem;
+    }
+  }
+  .img-holder {
+    width: 95%;
+    margin: 20px auto;
+    a {
+      margin-top: 5px;
+      float: left;
+      display: block;
+      width: 33.33%;
+      img {
+        display: block;
+        width: 95%;
+      }
+
+    }
+  }
+}
+
+.item-heading {
+  border-bottom: 1px solid #ECECEC;
+  padding: 5px;
+  height: 50px;
+  .left {
+    float: left;
+    max-width: 80%;
+    .head-pic {
+      float: left;
+      width: 50px;
+      height: 50px;
+      border-radius: 30px;
+    }
+    .detail {
+      float: left;
+      margin: 5px 10px;
+      .company {
+        line-height: 20px;
+        height: 20px;
+        font-size: .9rem;
+      }
+      .time {
+        line-height: 20px;
+        height: 20px;
+        font-size: .9rem;
+      }
+    }
+  }
+  .right {
+    float: right;
+    margin-right: 5px;
+    .top {
+      img {
+        float: right;
+        display: block;
+        height: 35px;
+      }
+    }
+    .botton {
+      margin-top: 5px;
+      img {
+        display: block;
+        float: right;
+        height: 10px;
+      }
+
+    }
+
+  }
+}
+
+// 未注册用户，阅读限制
+.warning {
+  display: block;
+  color: @warning-color;
+  text-align: center;
+  font-size: @warning-size;
+  line-height: 200%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+  margin-bottom: 13px;
+  &:hover, &:active {
+    color: #0AC86C;
+    text-shadow: 1px 1px 3px #fff;
+  }
+}

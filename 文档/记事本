@@ -1,0 +1,84 @@
+126邮箱
+yayabaojian2017@126.com
+yayabaojian
+
+七牛：
+账号 501177055@qq.com
+密码 ln778899
+
+ak:Gtm_frmskgjbyj6FIKD6emEQnDqelQrITyqKi-40
+sk:7aH9ICF4XefQZL5l-s7IRnoOH5PEK7EPKej2RgkX
+
+环信：
+826321978#huiminjishi
+YXA6Od77MIPqEeeWVA_-uEPHsA
+YXA6i1w0zfjRcOmCYv9BsA2kNFyd7ug
+
+umeng:
+appkey:59969d5404e205a2fa00138a
+
+mob:
+203000eff1a00
+0cfe5b50e42eea181599d3a41cd8f9f1
+
+
+微信：
+13181038186@163.com  aaa211209
+
+ //appid
+        public static final String WX_APP_ID = "wx977ea9023fbf25c9";//yum
+        //商户号
+        public static final String WX_MCH_ID = "1488354492";//yum
+        //  API密钥，在商户平台设置
+        public static final  String WX_API_KEY="13473ea7a46ba9238cf1ecaa6cad26a2";//yum
+
+        public static final  String WX_APP_SECRET="438d9dc88d440e51053d9d4cfeac927f";//yum
+
+        微信支付商户号
+        1488354492
+        商户平台登录帐号
+        1488354492@1488354492
+        商户平台登录密码
+        772087
+        申请对应的应用
+        丫丫保健（）
+        应用APPID
+        wx977ea9023fbf25c9
+
+
+
+阿里：
+501177055@qq.com   ln778899
+APPID: 2017041706780367
+
+QQ：APP ID 1106107422  APP KEY  4YJXM74wpHS0vSQK
+
+微博新浪：3095745864  b11052a28d07d9affc1f1c8ff3548e77
+
+//正式上线需要修改的地方
+1.会员费用和诚信费用改成正常的
+2.临时会员认证天数改成30天
+
+
+501177055    ln778899
+
+
+---已完成---logo
+---已完成---域名用贵人的
+微信支付
+---已完成---会员和技师的区分
+---已完成---加好友
+---已完成---两种会员和技师登录页面
+---已完成---技师邀请码
+
+
+真实好技师，就在丫丫保健
+
+我们要做真实的惠民技师信息平台
+使命：让用户方便
+愿景：做全国性的掌上信息平台
+价值观：真诚、便捷、创新、热爱
+
+获取地理位置权限是为了方便用户找到离自己最近的技师；
+获取短信是为了注册的时候获得验证码；
+

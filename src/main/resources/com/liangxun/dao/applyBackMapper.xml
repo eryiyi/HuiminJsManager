@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.ApplyBackDao">
+    <resultMap id="applyBack" type="com.liangxunwang.unimanager.model.ApplyBack">
+        <id column="applyid" property="applyid"/>
+        <result column="empid" property="empid"/>
+        <result column="applytime" property="applytime"/>
+        <result column="donetime" property="donetime"/>
+        <result column="is_check" property="is_check"/>
+        <result column="nicknameJbr" property="nicknameJbr"/>
+        <result column="mobile" property="mobile"/>
+    </resultMap>
+
+    <select id="lists" resultMap="applyBack">
+         SELECT sn.*,lemp.nickname as nicknameJbr,lemp.mobile as mobile from apply_back sn
+          LEFT JOIN emp lemp ON sn.empid=lemp.empid
+        WHERE 1=1
+        <if test="is_check != null and is_check != ''">
+            AND sn.is_check = #{is_check}
+        </if>
+        ORDER  by sn.applytime DESC
+          limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.applyid) FROM apply_back sn
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.ApplyBack">
+        INSERT INTO apply_back(applyid, empid, applytime, is_check)
+        VALUES (#{applyid}, #{empid}, #{applytime}, #{is_check})
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM apply_back where applyid = #{applyid}
+    </delete>
+
+    <select id="findById" parameterType="String" resultMap="applyBack">
+       SELECT sn.*,lemp.nickname as nicknameJbr from apply_back sn
+          LEFT JOIN emp lemp ON sn.empid=lemp.empid
+           where sn.applyid=#{applyid}
+    </select>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.ApplyBack">
+        UPDATE apply_back SET is_check=#{is_check},donetime=#{donetime} WHERE applyid=#{applyid}
+    </update>
+
+    <select id="findByEmpId" parameterType="String" resultMap="applyBack">
+        SELECT sn.* from apply_back sn
+        where sn.empid=#{empid} AND sn.is_check='0'
+    </select>
+
+</mapper>

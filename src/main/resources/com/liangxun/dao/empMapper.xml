@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.EmpDao">
+    <resultMap id="emp" type="com.liangxunwang.unimanager.model.Emp">
+        <id column="empid" property="empid"/>
+        <result column="mobile" property="mobile"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="cover" property="cover"/>
+        <result column="provinceid" property="provinceid"/>
+        <result column="cityid" property="cityid"/>
+        <result column="areaid" property="areaid"/>
+        <result column="rzstate2" property="rzstate2"/>
+        <result column="is_use" property="is_use"/>
+        <result column="dateline" property="dateline"/>
+        <result column="userId" property="userId"/>
+        <result column="channelId" property="channelId"/>
+        <result column="deviceType" property="deviceType"/>
+        <result column="is_push" property="is_push"/>
+        <result column="tjempid" property="tjempid"/>
+        <result column="yqnum" property="yqnum"/>
+        <result column="rolestate" property="rolestate"/>
+        <result column="tjnickname" property="tjnickname"/>
+        <result column="tjmobile" property="tjmobile"/>
+
+        <result column="pname" property="pname"/>
+        <result column="cityName" property="cityName"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="topnum" property="topnum"/>
+        <result column="sign" property="sign"/>
+
+        <result column="emp_number" property="emp_number"/>
+        <result column="level_id" property="level_id"/>
+        <result column="emp_erweima" property="emp_erweima"/>
+        <result column="emp_up" property="emp_up"/>
+        <result column="emp_pay_pass" property="emp_pay_pass"/>
+        <result column="lx_attribute_id" property="lx_attribute_id"/>
+        <result column="is_card_emp" property="is_card_emp"/>
+        <result column="package_money" property="package_money"/>
+        <result column="v" property="lx_dxk_level_id"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.Emp">
+         INSERT INTO emp(empid, mobile, password, is_use, dateline, rolestate, tjempid, nickname, cover, yqnum,emp_sex,emp_up,level_id,emp_number)
+         VALUES (#{empid}, #{mobile}, #{password}, #{is_use,jdbcType=VARCHAR}, #{dateline,jdbcType=VARCHAR}, #{rolestate,jdbcType=VARCHAR},
+         #{tjempid,jdbcType=VARCHAR}, #{nickname}, #{cover,jdbcType=VARCHAR}, #{yqnum,jdbcType=VARCHAR},
+         #{emp_sex,jdbcType=VARCHAR}, #{emp_up,jdbcType=VARCHAR}, #{level_id,jdbcType=VARCHAR},
+         #{emp_number,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updatePass" parameterType="String">
+        UPDATE emp SET password=#{password} WHERE empid=#{empid}
+    </update>
+
+    <select id="lists" resultMap="emp">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE 1=1
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+
+        <if test="rzstate2 != null and rzstate2 != ''">
+            AND sn.rzstate2 = #{rzstate2}
+        </if>
+
+        <if test="keywords != null and keywords != ''">
+            AND (sn.mobile like CONCAT('%',#{keywords},'%')  OR  sn.nickname like CONCAT('%',#{keywords},'%') )
+        </if>
+
+        <if test="tjmobile != null and tjmobile != ''">
+            AND (lemp.nickname like CONCAT('%',#{tjmobile},'%') OR  lemp.mobile like CONCAT('%',#{keywords},'%'))
+        </if>
+
+        ORDER  by sn.dateline DESC
+        limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.empid) FROM emp sn
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE 1=1
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="rzstate2 != null and rzstate2 != ''">
+            AND sn.rzstate2 = #{rzstate2}
+        </if>
+        <if test="keywords != null and keywords != ''">
+            AND (sn.mobile like CONCAT('%',#{keywords},'%')  OR  sn.nickname like CONCAT('%',#{keywords},'%') )
+        </if>
+        <if test="tjmobile != null and tjmobile != ''">
+            AND (lemp.nickname like CONCAT('%',#{tjmobile},'%') OR  lemp.mobile like CONCAT('%',#{keywords},'%'))
+        </if>
+    </select>
+
+
+
+    <select id="findById" resultMap="emp" parameterType="String">
+       SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE sn.empid=#{empid}
+    </select>
+
+    <select id="findByMobile" resultMap="emp" parameterType="String">
+      SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE sn.mobile=#{mobile}
+    </select>
+
+    <select id="findByCard" resultMap="emp" parameterType="String">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE sn.rolestate ='0' AND sn.yqnum=#{yqnum}
+    </select>
+
+    <update id="updateStatus" parameterType="String">
+        UPDATE emp SET is_use=#{is_use} WHERE empid=#{empid}
+    </update>
+
+    <update id="updateCover" parameterType="String">
+        UPDATE emp SET cover=#{cover} WHERE empid=#{empid}
+    </update>
+
+    <update id="updateProfile" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET
+        nickname=#{nickname},
+        provinceid=#{provinceid},
+        cityid=#{cityid},
+        sign=#{sign,jdbcType=VARCHAR},
+        is_use = '1'
+        WHERE empid=#{empid}
+    </update>
+
+    <update id="updateManage" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET
+        nickname=#{nickname},
+        cover=#{cover},
+        provinceid=#{provinceid},
+        cityid=#{cityid},
+        rzstate2=#{rzstate2},
+        rolestate=#{rolestate},
+        topnum=#{topnum},
+        sign=#{sign,jdbcType=VARCHAR},
+        is_use = #{is_use}
+        WHERE empid=#{empid}
+    </update>
+
+    <update id="updateMobile" parameterType="String">
+        UPDATE emp SET mobile=#{mobile} WHERE empid=#{empid}
+    </update>
+
+    <update id="updatePassByMobile" parameterType="String">
+        UPDATE emp SET password=#{password} WHERE mobile=#{mobile}
+    </update>
+
+    <update id="updateRzstate2" parameterType="String">
+        UPDATE emp SET rzstate2=#{rzstate2} WHERE empid=#{empid}
+    </update>
+
+    <insert id="saveList" parameterType="java.util.List">
+        INSERT INTO emp(empid, mobile, password, nickname,cover,provinceid,cityid,areaid,rzstate2,is_use,is_manager,dateline,rolestate,sign,yqnum)
+        VALUES
+        <foreach  collection="list" item="item" index="index" separator=",">
+            (#{item.empid},
+            #{item.mobile},
+            #{item.password},
+            #{item.nickname},
+            #{item.cover,jdbcType=VARCHAR},
+            #{item.provinceid},
+            #{item.cityid},
+            #{item.areaid},
+            #{item.rzstate2},
+            #{item.is_use},
+            #{item.is_manager},
+            #{item.dateline},
+            #{item.rolestate},
+            #{item.sign},
+            #{item.yqnum})
+        </foreach>
+    </insert>
+
+    <update id="updatePushId" parameterType="String">
+        UPDATE emp set userId=#{userId}, channelId=#{channelId}, deviceType=#{deviceType} WHERE empid=#{empid}
+    </update>
+
+    <select id="listsSearch" resultMap="emp">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE 1=1 AND  sn.is_use = '1'
+
+        <if test="keywords != null and keywords != ''">
+            AND (sn.mobile like CONCAT('%',#{keywords},'%')  OR  sn.nickname like CONCAT('%',#{keywords},'%') )
+        </if>
+
+        <if test="provinceid != null and provinceid != ''">
+            AND sn.provinceid = #{provinceid}
+        </if>
+
+        <if test="cityid != null and cityid != ''">
+            AND sn.cityid = #{cityid}
+        </if>
+
+        <if test="rolestate == 1">
+            AND sn.rolestate = '0'
+        </if>
+
+        ORDER  by sn.dateline DESC
+        limit #{index},#{size}
+    </select>
+
+    <select id="listsSearchNearby" resultMap="emp">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE 1=1 AND  sn.is_use = '1'
+
+        <if test="keywords != null and keywords != ''">
+            AND sn.mobile = #{keywords}
+        </if>
+
+        <if test="provinceid != null and provinceid != ''">
+            AND sn.provinceid = #{provinceid}
+        </if>
+
+        <if test="cityid != null and cityid != ''">
+            AND sn.cityid = #{cityid}
+        </if>
+
+        <if test="rolestate != null and rolestate != ''">
+            AND sn.rolestate = #{rolestate}
+        </if>
+
+        <if test="lat != null and lat != ''">
+            AND sn.lat > (#{lat}-1) AND   (#{lat} + 1) > sn.lat
+        </if>
+        <if test="lng != null and lng != ''">
+            AND sn.lng > (#{lng}-1) AND   (#{lng} + 1) > sn.lng
+        </if>
+
+        limit #{index},#{size}
+    </select>
+
+    <update id="updateIsPush" parameterType="String">
+        UPDATE emp SET is_push=#{is_push} WHERE empid=#{empid}
+    </update>
+
+    <update id="updateLocation" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET
+        lat=#{lat},
+        lng=#{lng}
+        WHERE empid=#{empid}
+    </update>
+
+
+    <select id="listsSearchTuijian" resultMap="emp">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE 1=1 AND  sn.is_use = '1'
+
+        <if test="keywords != null and keywords != ''">
+            AND (sn.mobile like CONCAT('%',#{keywords},'%')  OR  sn.nickname like CONCAT('%',#{keywords},'%') )
+        </if>
+
+        <if test="provinceid != null and provinceid != ''">
+            AND sn.provinceid = #{provinceid}
+        </if>
+
+        <if test="cityid != null and cityid != ''">
+            AND sn.cityid = #{cityid}
+        </if>
+
+        <if test="rolestate != null and rolestate != ''">
+            AND sn.rolestate = #{rolestate}
+        </if>
+
+        ORDER  by sn.dateline DESC
+        limit #{index},#{size}
+    </select>
+
+    <update id="updateType" parameterType="String">
+        UPDATE emp SET empType=#{empType} WHERE empid=#{emp_id}
+    </update>
+
+    <update id="updateEmpUp" parameterType="String">
+        UPDATE emp SET emp_up=#{emp_up} WHERE emp_id=#{emp_id}
+    </update>
+
+    <update id="resetEmpLocation" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET lat=#{lat}, lng = #{lng} WHERE empid=#{empId}
+    </update>
+
+    <update id="resetPayPass" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET emp_pay_pass=#{emp_pay_pass} WHERE empid=#{empId}
+    </update>
+
+    <select id="findInfoById" resultMap="emp" parameterType="String">
+        SELECT sn.*,
+        lcity.cityName as cityName,
+        lpro.pname as pname,
+        lemp.nickname as tjnickname,
+        lemp.mobile as tjmobile
+        from emp sn
+        LEFT JOIN province lpro ON lpro.provinceid = sn.provinceid
+        LEFT JOIN city lcity ON lcity.cityid = sn.cityid
+        LEFT JOIN emp lemp ON lemp.empid = sn.tjempid
+        WHERE sn.empid=#{empid}
+    </select>
+
+
+
+    <select id="listAllFensi" statementType="CALLABLE" resultMap="emp" parameterType="java.util.Map">
+        <![CDATA[
+        {call showChildLst(#{param1,mode=IN,jdbcType=VARCHAR})}
+        ]]>
+    </select>
+
+    <select id="findAll" statementType="CALLABLE" resultMap="emp" parameterType="java.util.Map">
+        <![CDATA[
+    		{call pagination(#{param1,mode=IN,jdbcType=INTEGER},#{param2,mode=IN,jdbcType=INTEGER},#{param3,mode=IN,jdbcType=VARCHAR}
+    		,#{param4,mode=IN,jdbcType=VARCHAR},#{param5,mode=IN,jdbcType=VARCHAR},#{param6,jdbcType=INTEGER,mode=OUT}
+    		)}
+		]]>
+    </select>
+
+    <select id="listAllFensiEmp" resultMap="emp">
+        SELECT le.*,ll.level_name as levelName,ll.level_zhe as level_zhe,
+        lempUp.mobile as emp_mobile_up ,lempUp.nickname as emp_name_up
+        ,lc.count as jfcount,lpac.package_money as package_money,ldxk.lx_dxk_name as lx_dxk_name
+        from emp le
+        LEFT JOIN lx_level ll ON ll.level_id = le.level_id
+        LEFT JOIN emp lempUp ON lempUp.empid = le.emp_up
+        LEFT JOIN lx_count lc ON lc.emp_id = le.empid
+        LEFT JOIN lx_package lpac ON lpac.emp_id = le.empid
+        LEFT JOIN lx_dxk_level ldxk ON ldxk.lx_dxk_level_id = le.lx_dxk_level_id
+        WHERE 1=1
+        <if test="emp_up != null and emp_up != ''">
+            AND le.emp_up=#{emp_up}
+        </if>
+    </select>
+
+
+    <update id="updateMemberDxkById" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET
+        is_card_emp=#{is_card_emp}
+        WHERE empid=#{empId}
+    </update>
+
+    <update id="resetPass" parameterType="String">
+        UPDATE emp SET password=#{rePass} WHERE empid=#{empId}
+    </update>
+
+
+    <update id="modifyMemberSex" parameterType="com.liangxunwang.unimanager.model.Emp">
+        UPDATE emp SET emp_sex=#{empSex}   WHERE empid=#{empId}
+    </update>
+
+
+    <select id="memberCount" resultType="long">
+        SELECT COUNT(empid) FROM emp
+    </select>
+
+    <select id="memberCountDxk" resultType="long">
+        SELECT COUNT(empid) FROM emp WHERE is_card_emp = '1'
+    </select>
+
+
+    <select id="countDay" resultType="Long">
+        SELECT count(sn.empid) FROM emp sn
+        WHERE 1=1
+        AND sn.dateline &gt; #{startTime}
+        AND sn.dateline &lt; #{endTime}
+        <if test="rzstate2 != null and rzstate2 != ''">
+            AND sn.rzstate2 = #{rzstate2}
+        </if>
+    </select>
+
+
+    <select id="countDayDxk" resultType="Long">
+        SELECT count(sn.empid) FROM emp sn
+        WHERE 1=1 AND is_card_emp = '1'
+        AND sn.dateline &gt; #{startTime}
+        AND sn.dateline &lt; #{endTime}
+    </select>
+
+    <select id="findByNumber" resultMap="emp" parameterType="String">
+        SELECT * FROM emp WHERE emp_number=#{emp_number}
+    </select>
+</mapper>

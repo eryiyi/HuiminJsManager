@@ -1,0 +1,64 @@
+.content {
+  .card {
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 2px 6px 16px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 2px 6px 16px rgba(0, 0, 0, .3);
+    box-shadow: 2px 6px 16px rgba(0, 0, 0, .3);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 500px;
+    height: 120px;
+    .pic-holder {
+      height: 120px;
+      width: 120px;
+      float: left;
+      & > img {
+        display: block;
+        width: 100%;
+        overflow-y: hidden;
+      }
+    }
+    .words {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0 15px;
+      float: left;
+      width: 380px;
+      .words-line {
+        float: left;
+        width: 100%;
+        .name {
+          float: left;
+          line-height: 40px;
+          font-size: 25px;
+          margin-top: 5px;
+        }
+        .badge {
+          float: right;
+          height: 40px;
+          margin-top: 5px;
+        }
+        .star {
+          float: right;
+          height: 15px;
+          margin: 7.5px 0;
+        }
+        .phone {
+          float: left;
+          line-height: 30px;
+          font-size: 20px;
+        }
+        .company {
+          font-size: 20px;
+          line-height: 45px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+  }
+
+}

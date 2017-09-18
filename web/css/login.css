@@ -1,0 +1,14 @@
+
+.regist a {
+    margin: 10px 0;
+    color: #777;
+}
+
+.regist a:nth-child(1) {
+    float: left;
+
+}
+
+.regist a:nth-child(2) {
+    float: right;
+}

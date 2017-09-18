@@ -1,0 +1,82 @@
+.content {
+    font-family: "Microsoft Yahei";
+    width: 100%;
+}
+
+.phones {
+    display: block;
+}
+
+.phone-list:first-child {
+    border-top: none;
+}
+.phone-list {
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    margin-bottom: 10px;
+    width: 100%;
+    display: table;
+}
+
+.pic-holder {
+    vertical-align: top;
+    display: table-cell;
+    width: 70px;
+}
+
+.pic-holder > img {
+    display: block;
+    height: 70px;
+    width: 70px;
+}
+
+.info {
+    vertical-align: top;
+    display: table-cell;
+    text-align: left;
+    padding: 0 5px;
+}
+
+.info .name {
+    padding-top: 6px;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.info .name-alone{
+    padding: 6px;
+    line-height: 28px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.info .address {
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.phone {
+    vertical-align: top;
+    display: table-cell;
+    width: 70px;
+}
+
+.phone > a {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-left:1px solid #ddd;
+    background-color: #fff;
+    padding: 15px;
+}
+
+.phone > a:active {
+    background-color: #ddd;
+}
+
+.phone > a > img {
+    display: block;
+    height: 40px;
+    width: 40px;
+}

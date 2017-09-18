@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.NewsDao">
+    <resultMap id="news" type="com.liangxunwang.unimanager.model.HappyHandNews">
+        <id column="newsid" property="newsid"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="dateline" property="dateline"/>
+        <result column="is_read" property="is_read"/>
+    </resultMap>
+
+    <select id="lists" resultMap="news">
+        SELECT * from happy_hand_news
+        WHERE 1=1
+        <if test="starttime != null and starttime != ''">
+            AND dateline &gt; #{starttime}
+        </if>
+        ORDER BY dateline DESC limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.newsid) FROM happy_hand_news sn
+        WHERE 1=1
+        <if test="starttime != null and starttime != ''">
+            AND sn.dateline &gt; #{starttime}
+        </if>
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.HappyHandNews">
+        INSERT INTO happy_hand_news(newsid, title, content, dateline)
+        VALUES (#{newsid}, #{title}, #{content,jdbcType=VARCHAR}, #{dateline})
+    </insert>
+
+    <select id="findById" parameterType="String" resultMap="news">
+        SELECT * FROM happy_hand_news where newsid=#{newsid}
+    </select>
+
+
+
+</mapper>

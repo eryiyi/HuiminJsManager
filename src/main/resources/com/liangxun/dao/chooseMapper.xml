@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.ChooseDao">
+    <resultMap id="choose" type="com.liangxunwang.unimanager.model.HappyHandChoose">
+        <id column="chooseid" property="chooseid"/>
+        <result column="empid" property="empid"/>
+        <result column="agestart" property="agestart"/>
+        <result column="ageend" property="ageend"/>
+        <result column="heightlstart" property="heightlstart"/>
+        <result column="heightlend" property="heightlend"/>
+        <result column="educationm" property="educationm"/>
+        <result column="marriagem" property="marriagem"/>
+    </resultMap>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.HappyHandChoose">
+         INSERT INTO happy_hand_choose(chooseid, empid, agestart, ageend, heightlstart, heightlend, educationm, marriagem)
+         VALUES (#{chooseid}, #{empid}, #{agestart}, #{ageend}, #{heightlstart}, #{heightlend}, #{educationm}, #{marriagem})
+    </insert>
+
+    <select id="lists" resultMap="choose">
+        SELECT sn.*
+        from happy_hand_choose sn
+        limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.chooseid) FROM happy_hand_choose sn
+    </select>
+
+    <select id="findById" resultMap="choose" parameterType="String">
+        SELECT sn.*
+        from happy_hand_choose sn
+        WHERE sn.chooseid=#{chooseid}
+    </select>
+
+    <select id="findByEmpid" resultMap="choose" parameterType="String">
+        SELECT sn.*
+        from happy_hand_choose sn
+        WHERE sn.empid=#{empid}
+    </select>
+
+    <update id="update" parameterType="String">
+        UPDATE happy_hand_choose SET
+        agestart=#{agestart}
+        ,ageend=#{ageend}
+        ,heightlstart=#{heightlstart}
+        ,heightlend=#{heightlend}
+        ,educationm=#{educationm}
+        ,marriagem=#{marriagem}
+         WHERE chooseid=#{chooseid}
+    </update>
+
+</mapper>

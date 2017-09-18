@@ -1,0 +1,38 @@
+<component name="libraryTable">
+  <library name="aopalliance-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bccs-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-beanutils-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-httpclient-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ezmorph-1.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxen-1.1-beta-6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json.org.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jxl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/MySQL.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-aop-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-aspects-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-beans-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-context-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-context-support-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-core-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-expression-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-instrument-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-instrument-tomcat-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-jdbc-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-jms-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-messaging-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-orm-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-oxm-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-test-4.3.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/spring-tx-4.3.1.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

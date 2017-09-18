@@ -1,0 +1,120 @@
+.share-holder {
+    margin-bottom: 20px;
+}
+
+.share-holder > img {
+    display: block;
+    width: 100%;
+}
+
+.btn-download {
+    margin-top: 2rem;
+    display: block;
+    text-align: center;
+    line-height: 250%;
+    background-color: #4ABA67;
+    color: #E0FFF1;
+    font-size:0.95rem;
+}
+
+.btn-download:hover {
+    -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-download:active {
+    transform: translateY(2px);
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+    .container .side {
+        width: 100%;
+        margin: 20px auto 30px auto;
+    }
+
+    .container .side .side-content {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .container .side .side-content .pic-holder {
+        padding: 8px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        background-color: #fff;
+        -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+    }
+
+    .container .side .side-content .pic-holder:hover {
+        -webkit-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .container .side .side-content .pic-holder .cqr {
+        width: 100%;
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 1000px;
+        margin: 0 auto;
+    }
+
+    .container .side {
+        width: 50%;
+        float: left;
+    }
+
+    .container .side .side-content {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    .container .side .side-content .pic-holder {
+        padding: 10px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        background-color: #fff;
+        -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+    }
+
+    .container .side .side-content .pic-holder:hover {
+        -webkit-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .container .side .side-content .pic-holder .cqr {
+        width: 100%;
+        display: block;
+    }
+}
+
+body {
+    background: url("/img/share_bg.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+}

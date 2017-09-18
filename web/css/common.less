@@ -1,0 +1,186 @@
+// color
+@color-line: #ccc;
+@color-toolbar-active: #ccc;
+@color-green: #4ABA67;
+
+// size
+@head-title-size: 1.3rem;
+// CONTAINER
+.container {
+  height: 100%;
+}
+
+// ON SCREEN
+@media screen and (min-width: 768px) {
+  body {
+    background-color: #fafafa;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+// ON PHONE
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+// HEADING
+.heading {
+  height: 50px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+  .back {
+    position: absolute;
+    img {
+      padding: 10px;
+      height: 30.5px;
+      display: block;
+    }
+  }
+  .head-title {
+    text-align: center;
+    line-height: 50px;
+    font-size: @head-title-size;
+  }
+  .icon-group {
+    text-align: center;
+    box-sizing: border-box;
+    width: 30%;
+    float: left;
+    padding: 15px 10px;
+    height: 20px;
+    i {
+      float: left;
+      height: 20px;
+      width: 20px;
+      background: url("../pics/tree_icons_location.png") no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    span {
+      float: left;
+      height: 20px;
+      font-size: 14px;
+      margin: 3px 0;
+      line-height: 20px;
+    }
+  }
+  .search-bar {
+    display: block;
+    margin-right: 5%;
+    width: 65%;
+    float: left;
+    margin: 5px 0;
+    background-color: #F2F2F2;
+    border-radius: 30px;
+    input {
+      font-size: 1em;
+      float: left;
+      display: block;
+      width: 75%;
+      padding: 5px 0 5px 5%;
+      color: #444;
+      background-color: transparent;
+      height: 30px;
+      line-height: 30px;
+    }
+    button {
+      background-color: #4ABA67;
+      color: #fff;
+      font-weight: bold;
+      float: left;
+      font-size: 14px;
+      border-radius: 30px;
+      width: 20%;
+      height: 40px;
+      &:active {
+        background-color: darken(#4ABA67, 10%);
+      }
+    }
+  }
+}
+
+// CONTENT
+.content {
+  margin: 0 auto 60px;
+  height: 100%;
+}
+
+// TOOLBAR
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid @color-line;
+  background-color: #fff;
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+  a {
+    display: block;
+    float: left;
+    width: 25%;
+    height: 60px;
+  }
+  .toolbar-button(@img) {
+    background: url("../pics/tree_toolbar_@{img}.png") no-repeat center center;
+    background-size: 50px;
+    &:active {
+      background-color: @color-toolbar-active;
+    }
+    &-active {
+      background: url("../pics/tree_toolbar_@{img}_p.png") no-repeat center center;
+      background-size: 50px;
+    }
+  }
+  .buy {
+    .toolbar-button(wanted);
+  }
+  .sell {
+    .toolbar-button(sell);
+  }
+  .recommend {
+    .toolbar-button(star);
+  }
+  .mine {
+    .toolbar-button(user);
+  }
+}
+
+.button-phone-big {
+  display: inline-block;
+  border-radius: 50px;
+  border: 1px solid @color-green;
+  padding: 5px 30px 5px 20px;
+  .phone-icon {
+    display: block;
+    float: left;
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+  }
+  .phone-number {
+    display: block;
+    float: left;
+    font-size: 1rem;
+    color: @color-green;
+    line-height: 30px;
+  }
+  &:active {
+    background-color: @color-green;
+    .phone-number {
+      font-size: 1rem;
+      color: #fff;
+    }
+  }
+}

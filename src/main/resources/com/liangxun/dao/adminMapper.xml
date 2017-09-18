@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.AdminDao">
+    <resultMap id="my_admin" type="com.liangxunwang.unimanager.model.Admin">
+        <id column="manager_id" property="manager_id"/>
+        <result column="manager_admin" property="manager_admin"/>
+        <result column="manager_cover" property="manager_cover"/>
+        <result column="manager_pass" property="manager_pass"/>
+        <result column="is_use" property="is_use"/>
+        <result column="emp_id" property="emp_id"/>
+        <result column="permissions" property="permissions"/>
+        <result column="rname" property="rname"/>
+
+        <result column="is_pingtai" property="is_pingtai"/>
+        <result column="is_daili" property="is_daili"/>
+    </resultMap>
+
+    <resultMap id="my_admin_vo" type="com.liangxunwang.unimanager.mvc.vo.AdminVO">
+        <id column="manager_id" property="manager_id"/>
+        <result column="manager_admin" property="manager_admin"/>
+        <result column="manager_cover" property="manager_cover"/>
+        <result column="manager_pass" property="manager_pass"/>
+        <result column="is_use" property="is_use"/>
+        <result column="emp_id" property="emp_id"/>
+        <result column="permissions" property="permissions"/>
+        <result column="rname" property="rname"/>
+
+        <result column="is_pingtai" property="is_pingtai"/>
+        <result column="is_daili" property="is_daili"/>
+
+        <result column="emp_number" property="emp_number"/>
+        <result column="empMobile" property="empMobile"/>
+
+        <result column="company_name" property="company_name"/>
+        <result column="company_tel" property="company_tel"/>
+        <result column="company_person" property="company_person"/>
+    </resultMap>
+
+
+    <select id="findById" resultMap="my_admin" parameterType="String">
+        SELECT sn.*
+        from manager sn
+         WHERE sn.manager_id=#{manager_id}
+    </select>
+
+
+    <select id="findByEmpId" resultMap="my_admin_vo" parameterType="String">
+        SELECT sn.*,le.emp_number as emp_number, le.mobile as empMobile
+        from manager  sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE sn.emp_id=#{empId}
+    </select>
+
+
+    <select id="findByName" resultMap="my_admin" parameterType="String">
+        SELECT sn.*
+        from manager sn
+        WHERE sn.manager_admin=#{manager_admin}
+    </select>
+
+    <insert id="add" parameterType="com.liangxunwang.unimanager.model.Admin">
+        INSERT INTO manager(manager_id, manager_admin, manager_cover, manager_pass, is_use,emp_id,permissions)
+         VALUES (#{manager_id}, #{manager_admin}, #{manager_cover}, #{manager_pass}, #{is_use}, #{emp_id, jdbcType=VARCHAR}, #{permissions, jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        DELETE FROM manager WHERE manager_id=#{manager_id}
+    </delete>
+
+    <update id="updatePass" parameterType="String">
+        UPDATE manager SET manager_pass=#{manager_pass} WHERE manager_id=#{manager_id}
+    </update>
+
+    <update id="updateStatus" parameterType="String">
+        UPDATE manager SET is_use=#{is_use} WHERE manager_id=#{manager_id}
+    </update>
+
+    <select id="lists" resultMap="my_admin">
+        SELECT sn.*,lr.rname as  rname
+        from manager sn
+        LEFT  JOIN  happy_hand_role lr ON  lr.rid = sn.permissions
+        WHERE 1=1
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        limit #{index},#{size}
+    </select>
+
+
+
+    <update id="updateRoles" parameterType="String">
+        UPDATE manager SET permissions=#{permissions} WHERE manager_id=#{manager_id}
+    </update>
+
+    <select id="listsSj" resultMap="my_admin_vo">
+        SELECT sn.*,
+        le.emp_number as emp_number,
+        le.mobile as empMobile,
+        lma.company_name as company_name,
+        lma.company_tel as company_tel,
+        lma.company_person as company_person
+        from manager sn
+        LEFT JOIN emp le ON le.empid = sn.emp_id
+        LEFT JOIN manager_info lma ON lma.emp_id = sn.emp_id
+        WHERE 1=1 AND  sn.emp_id !=  '0'
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="cont !=null and cont !=''">
+            AND (le.nickname like CONCAT('%',#{cont},'%') OR le.mobile like CONCAT('%',#{cont},'%') )
+        </if>
+        limit #{index},#{size}
+    </select>
+
+    <select id="listsDl" resultMap="my_admin_vo">
+        SELECT sn.*,le.emp_number as emp_number, le.mobile as empMobile
+        from manager sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE 1=1 AND  sn.emp_id !=  '0' AND sn.is_daili = '1'
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="cont !=null and cont !=''">
+            AND (le.nickname like CONCAT('%',#{cont},'%') OR le.mobile like CONCAT('%',#{cont},'%') )
+        </if>
+        limit #{index},#{size}
+    </select>
+
+    <select id="count" resultType="Long">
+        SELECT count(sn.manager_id) FROM manager sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE 1=1  AND  sn.emp_id =  '0'
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="cont !=null and cont !=''">
+            AND (le.nickname like CONCAT('%',#{cont},'%') OR le.mobile like CONCAT('%',#{cont},'%') )
+        </if>
+    </select>
+
+    <select id="countSj" resultType="Long">
+        SELECT count(sn.manager_id) FROM manager sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE 1=1 AND  sn.emp_id !=  '0'
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="cont !=null and cont !=''">
+            AND (le.nickname like CONCAT('%',#{cont},'%') OR le.mobile like CONCAT('%',#{cont},'%') )
+        </if>
+    </select>
+    <select id="countDl" resultType="Long">
+        SELECT count(sn.manager_id) FROM manager sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE 1=1 AND  sn.emp_id !=  '0' AND sn.is_daili = '1'
+        <if test="is_use != null and is_use != ''">
+            AND sn.is_use = #{is_use}
+        </if>
+        <if test="cont !=null and cont !=''">
+            AND (le.nickname like CONCAT('%',#{cont},'%') OR le.mobile like CONCAT('%',#{cont},'%') )
+        </if>
+    </select>
+
+
+
+    <select id="listsEmpIds" resultMap="my_admin_vo">
+        SELECT sn.*
+        from manager sn
+        WHERE 1=1
+        <if test="empids != null and empids != ''">
+            AND sn.emp_id IN
+            <foreach collection="empids" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findByUsername" resultMap="my_admin_vo" parameterType="String">
+        SELECT sn.*,le.emp_number as emp_number,le.mobile as empMobile
+        from manager sn
+        LEFT JOIN  emp le ON le.empid = sn.emp_id
+        WHERE sn.manager_admin=#{username}
+    </select>
+
+</mapper>

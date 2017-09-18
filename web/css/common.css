@@ -1,0 +1,394 @@
+.container {
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        background-color: #fafafa;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+
+}
+
+.heading {
+    padding: 0 5px;
+    position: relative;
+    height: 50px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.heading .back {
+    position: absolute;
+}
+
+.heading .back img {
+    padding: 10px;
+    height: 30.5px;
+    display: block;
+}
+
+.heading .head-title {
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.3rem;
+}
+
+.heading > .left {
+    width: 15%;
+    float: left;
+}
+
+.heading > .right {
+    float: right;
+    width: 15%;
+}
+
+.heading .login {
+
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1rem;
+    color: #4ABA67;
+}
+
+.heading .location {
+    display: block;
+    margin: 5px auto;
+    line-height: 20px;
+    font-size: 10px;
+    color: #4ABA67;
+}
+
+.heading .location:active {
+    background-color: #ccc;
+}
+
+.heading .publish {
+    color: #4ABA67;
+    line-height: 50px;
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.heading .publish:active {
+    background-color: #ccc;
+}
+
+.heading .search {
+    color: #4ABA67;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.heading .search:hover {
+    background-color: #eee;
+}
+
+.heading .icon-group span {
+    float: left;
+    height: 20px;
+    font-size: 14px;
+    margin: 3px 0;
+    line-height: 20px;
+}
+
+.heading .search-bar {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 66%;
+    float: left;
+    margin: 6px 2%;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+}
+
+.heading .search-bar input {
+    font-size: 1em;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    width: 75%;
+    padding: 5px 0 5px 10px;
+    color: #444;
+    background-color: transparent;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-right: none;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    line-height: 38px;
+}
+
+.heading .search-bar input:focus {
+    background-color: #fff;
+}
+
+.heading .search-bar button {
+    background-color: #4ABA67;
+    color: #fff;
+    font-weight: bold;
+    float: left;
+    font-size: 1rem;
+    border-radius: 0 5px 5px 0;
+    width: 25%;
+    height: 38px;
+}
+
+.heading .search-bar button:active {
+    background-color: #63b427;
+}
+
+.content {
+    margin: 0 auto 55px;
+    height: 100%;
+}
+
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    background-color: #fff;
+}
+
+.toolbar::after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.toolbar a {
+    display: block;
+    float: left;
+    width: 25%;
+    height: 50px;
+}
+
+.toolbar .buy {
+    background: url("/img/tree_toolbar_wanted.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .buy:active {
+    background-color: #cccccc;
+}
+
+.toolbar .buy-active {
+    background: url("/img/tree_toolbar_wanted_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .sell {
+    background: url("/img/tree_toolbar_sell.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .sell:active {
+    background-color: #cccccc;
+}
+
+.toolbar .sell-active {
+    background: url("/img/tree_toolbar_sell_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .recommend {
+    background: url("/img/tree_toolbar_star.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .recommend:active {
+    background-color: #cccccc;
+}
+
+.toolbar .recommend-active {
+    background: url("/img/tree_toolbar_star_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .mine {
+    background: url("/img/tree_toolbar_user.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar .mine:active {
+    background-color: #cccccc;
+}
+
+.toolbar .mine-active {
+    background: url("/img/tree_toolbar_user_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    background-color: #fff;
+}
+
+.toolbar-2::after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.toolbar-2 a {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 60px;
+}
+
+.toolbar-2 .buy {
+    background: url("/img/tree_toolbar_wanted.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .buy:active {
+    background-color: #cccccc;
+}
+
+.toolbar-2 .buy-active {
+    background: url("/img/tree_toolbar_wanted_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .sell {
+    background: url("/img/tree_toolbar_sell.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .sell:active {
+    background-color: #cccccc;
+}
+
+.toolbar-2 .sell-active {
+    background: url("/img/tree_toolbar_sell_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .recommend {
+    background: url("/img/tree_toolbar_star.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .recommend:active {
+    background-color: #cccccc;
+}
+
+.toolbar-2 .recommend-active {
+    background: url("/img/tree_toolbar_star_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .mine {
+    background: url("/img/tree_toolbar_user.png") no-repeat center center;
+    background-size: contain;
+}
+
+.toolbar-2 .mine:active {
+    background-color: #cccccc;
+}
+
+.toolbar-2 .mine-active {
+    background: url("/img/tree_toolbar_user_p.png") no-repeat center center;
+    background-size: contain;
+}
+
+.button-phone-big {
+    display: inline-block;
+    /*border-radius: 50px;*/
+    border: 1px solid #4ABA67;
+    padding: 5px 30px 5px 20px;
+    min-width: 140px;
+}
+
+.button-phone-big .phone-icon {
+    margin-top: 2.5px;
+    display: block;
+    float: left;
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
+
+.button-phone-big .phone-number {
+    display: block;
+    float: right;
+    font-size: 1rem;
+    color: #4ABA67;
+    line-height: 30px;
+}
+
+.button-phone-big:active {
+    background-color: #4ABA67;
+}
+
+.button-phone-big:active .phone-number {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.imgbox {
+    float: right;
+    margin-right: 22px;
+}
+
+.imgboxtxt {
+    z-index: 1000;
+    border-radius: 8px;
+    position: absolute;
+    right: 0;
+    width: 80px;
+    padding: 10px 0;
+    /*margin-top: 40px;*/
+    margin-top: -9px;
+    text-align: center;
+    background-color: #4ABA67;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.imgboxtxt a {
+    padding: 8px 0;
+    display: block;
+    line-height: 200%;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.imgboxtxt a:active {
+    background-color: #fff;
+    background-color: #00A072;
+}

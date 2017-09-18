@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+<g id="phone">
+	<g>
+		<path fill="#FFFFFF" d="M15.04,48.54c-2.6,0-4.72-2.12-4.72-4.72V6.35c0-2.6,2.12-4.72,4.72-4.72h20.92c2.6,0,4.72,2.12,4.72,4.72
+			v37.47c0,2.6-2.12,4.72-4.72,4.72H15.04z"/>
+		<path fill="#CCCCCC" d="M35.96,1.91c2.45,0,4.44,1.99,4.44,4.44v37.47c0,2.45-1.99,4.44-4.44,4.44H15.04
+			c-2.45,0-4.44-1.99-4.44-4.44V6.35c0-2.45,1.99-4.44,4.44-4.44H35.96 M35.96,1.35H15.04c-2.75,0-5,2.25-5,5v37.47
+			c0,2.75,2.25,5,5,5h20.92c2.75,0,5-2.25,5-5V6.35C40.96,3.6,38.71,1.35,35.96,1.35L35.96,1.35z"/>
+	</g>
+	<circle fill="#999999" stroke="#CCCCCC" stroke-width="0.557" stroke-miterlimit="10" cx="25.5" cy="44.36" r="2.38"/>
+	<path id="screen_1_" fill="#999999" d="M40.96,39.6H10.04V6.35c0-2.76,2.24-5,5-5h20.92c2.76,0,5,2.24,5,5V39.6z"/>
+</g>
+<g id="lock_2_">
+</g>
+</svg>

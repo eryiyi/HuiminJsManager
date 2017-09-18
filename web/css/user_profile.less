@@ -1,0 +1,83 @@
+// color
+@color-divider: #ccc;
+@color-green: #19A15F;
+// size
+
+.divider {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid @color-divider;
+
+  font-size: 1rem;
+  text-shadow: 0 0 2px #fff;
+}
+
+.ads {
+  margin: 20px 0;
+  & > a {
+    margin-top: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid @color-green;
+    border-radius: 10px;
+    display: block;
+    float: left;
+    & > input {
+      display: none;
+    }
+    & > label {
+      display: block;
+      overflow: hidden;
+      min-width: 100%;
+      & > img {
+        border-radius: 10px;
+        width: 100%;
+        display: block;
+      }
+    }
+  }
+}
+
+// screen
+@media screen and (min-width: 900px) {
+  .ads {
+    & > a {
+      width: 23.5%;
+      margin-left: 2%;
+      &:nth-child(4n+1) {
+        margin-left: 0;
+      }
+      & > input {
+        display: none;
+      }
+      & > label {
+        & > img {
+        }
+      }
+    }
+  }
+}
+
+// phone
+@media screen and (max-width: 900px) {
+  .ads {
+    & > a {
+      width: 48%;
+      margin-left: 4%;
+      &:nth-child(2n+1) {
+        margin-left: 0;
+      }
+      & > input {
+        display: none;
+      }
+      & > label {
+      }
+    }
+  }
+}
+
+.recent {
+  padding: 1rem 0 2rem;
+  background-color: #f2f2f2;
+
+}

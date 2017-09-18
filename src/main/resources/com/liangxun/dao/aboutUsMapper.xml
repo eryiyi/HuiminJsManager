@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangxunwang.unimanager.dao.AboutUsDao">
+    <resultMap id="aboutUs" type="com.liangxunwang.unimanager.model.HappyHandCompany">
+        <id column="companyid" property="companyid"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="cont1" property="cont1"/>
+        <result column="cont2" property="cont2"/>
+        <result column="cont3" property="cont3"/>
+    </resultMap>
+
+    <select id="lists" resultMap="aboutUs">
+        SELECT * from happy_hand_company
+    </select>
+
+    <insert id="save" parameterType="com.liangxunwang.unimanager.model.HappyHandCompany">
+        INSERT INTO happy_hand_company(companyid, title,content,cont1,cont2,cont3)
+        VALUES (#{companyid}, #{title}, #{content}, #{cont1}, #{cont2}, #{cont3})
+    </insert>
+
+    <update id="update" parameterType="com.liangxunwang.unimanager.model.HappyHandCompany">
+        UPDATE happy_hand_company SET title=#{title}, content=#{content},cont1=#{cont1},cont2=#{cont2},cont3=#{cont3} WHERE companyid=#{companyid}
+    </update>
+
+</mapper>
